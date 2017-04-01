@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ExpenseManager.ViewModel.Report>
+
+<h3>Total Expenditure</h3>
+@if (Model != null && (float)ViewBag.Total > 0)
+{
+    <table id="reportTable">
+        <thead>
+            <tr>
+                <th>   Name</th>
+                <th> Threshold</th>
+                <th>   Payment</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Threshold</td>
+                    <td style="color:@item.Severity">@item.Value</td>
+                </tr>
+            }
+            <tr style="font-weight:bold;">
+                <td colspan="2">Total</td>
+                <td>@ViewBag.Total</td>
+            </tr>
+            </tbody>
+</table>
+}
+

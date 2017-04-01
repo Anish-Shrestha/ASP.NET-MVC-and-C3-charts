@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ExpenseManagerModelStoreContainer" CdmEntityContainer="ExpenseManagerEntities">
+    <EntitySetMapping Name="ExpenseRecord">
+      <EntityTypeMapping TypeName="ExpenseManagerModel.ExpenseRecord">
+        <MappingFragment StoreEntitySet="ExpenseRecord">
+          <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="Expense" ColumnName="Expense" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentsSchedule">
+      <EntityTypeMapping TypeName="ExpenseManagerModel.PaymentsSchedule">
+        <MappingFragment StoreEntitySet="PaymentsSchedule">
+          <ScalarProperty Name="PaymentsId" ColumnName="PaymentsId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Threshold">
+      <EntityTypeMapping TypeName="ExpenseManagerModel.Threshold">
+        <MappingFragment StoreEntitySet="Threshold">
+          <ScalarProperty Name="ThresholdId" ColumnName="ThresholdId" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type">
+      <EntityTypeMapping TypeName="ExpenseManagerModel.Type">
+        <MappingFragment StoreEntitySet="Type">
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsAutomatic" ColumnName="IsAutomatic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Saving">
+      <EntityTypeMapping TypeName="ExpenseManagerModel.Saving">
+        <MappingFragment StoreEntitySet="Saving">
+          <ScalarProperty Name="SavingId" ColumnName="SavingId" />
+          <ScalarProperty Name="Saving1" ColumnName="Saving" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

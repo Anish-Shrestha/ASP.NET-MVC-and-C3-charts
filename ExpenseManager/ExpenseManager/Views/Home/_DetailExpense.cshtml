@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ExpenseManager.ViewModel.Expenses>
+
+<h3>Detail Expense</h3>
+<div class="scrollingTable">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Payment</th>
+                <th></th>
+            </tr>
+        </thead>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Date.ToString("D")</td>
+                    <td>@item.Payment</td>
+                    <td><span style="color:orangered;" onclick="deleteRecord('@item.Id');" class="glyphicon glyphicon-remove"></span></td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+<script>
+
+    function deleteRecord(id) {
+        $.ajax({
+            url: "/Home/DeleteRecord?id="+id,
+            type: "POST",
+           
+            success: function (data) {
+                window.location.reload();
+            },
+      
+        });
+    }
+</script>

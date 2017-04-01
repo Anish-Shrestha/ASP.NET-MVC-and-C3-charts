@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ExpenseManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ExpenseRecord">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="Expense" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentsSchedule">
+          <Key>
+            <PropertyRef Name="PaymentsId" />
+          </Key>
+          <Property Name="PaymentsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ExpenseManager.dbo.Saving' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Saving">
+          <Key>
+            <PropertyRef Name="SavingId" />
+            <PropertyRef Name="Saving" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="SavingId" Type="int" Nullable="false" />
+          <Property Name="Saving" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Threshold">
+          <Key>
+            <PropertyRef Name="ThresholdId" />
+          </Key>
+          <Property Name="ThresholdId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsAutomatic" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ExpenseManagerModelStoreContainer">
+          <EntitySet Name="ExpenseRecord" EntityType="Self.ExpenseRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentsSchedule" EntityType="Self.PaymentsSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Threshold" EntityType="Self.Threshold" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saving" EntityType="Self.Saving" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Saving].[SavingId] AS [SavingId], 
+    [Saving].[Saving] AS [Saving], 
+    [Saving].[CreatedDate] AS [CreatedDate]
+    FROM [dbo].[Saving] AS [Saving]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExpenseManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ExpenseRecord">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="Expense" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PaymentsSchedule">
+          <Key>
+            <PropertyRef Name="PaymentsId" />
+          </Key>
+          <Property Name="PaymentsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Threshold">
+          <Key>
+            <PropertyRef Name="ThresholdId" />
+          </Key>
+          <Property Name="ThresholdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsAutomatic" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Saving">
+          <Key>
+            <PropertyRef Name="SavingId" />
+            <PropertyRef Name="Saving1" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="SavingId" Type="Int32" Nullable="false" />
+          <Property Name="Saving1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="ExpenseManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ExpenseRecord" EntityType="Self.ExpenseRecord" />
+          <EntitySet Name="PaymentsSchedule" EntityType="Self.PaymentsSchedule" />
+          <EntitySet Name="Threshold" EntityType="Self.Threshold" />
+          <EntitySet Name="Type" EntityType="Self.Type" />
+          <EntitySet Name="Saving" EntityType="Self.Saving" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExpenseManagerModelStoreContainer" CdmEntityContainer="ExpenseManagerEntities">
+          <EntitySetMapping Name="ExpenseRecord">
+            <EntityTypeMapping TypeName="ExpenseManagerModel.ExpenseRecord">
+              <MappingFragment StoreEntitySet="ExpenseRecord">
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Expense" ColumnName="Expense" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentsSchedule">
+            <EntityTypeMapping TypeName="ExpenseManagerModel.PaymentsSchedule">
+              <MappingFragment StoreEntitySet="PaymentsSchedule">
+                <ScalarProperty Name="PaymentsId" ColumnName="PaymentsId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Threshold">
+            <EntityTypeMapping TypeName="ExpenseManagerModel.Threshold">
+              <MappingFragment StoreEntitySet="Threshold">
+                <ScalarProperty Name="ThresholdId" ColumnName="ThresholdId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type">
+            <EntityTypeMapping TypeName="ExpenseManagerModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsAutomatic" ColumnName="IsAutomatic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saving">
+            <EntityTypeMapping TypeName="ExpenseManagerModel.Saving">
+              <MappingFragment StoreEntitySet="Saving">
+                <ScalarProperty Name="SavingId" ColumnName="SavingId" />
+                <ScalarProperty Name="Saving1" ColumnName="Saving" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
